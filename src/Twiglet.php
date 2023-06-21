@@ -2,6 +2,9 @@
 
 namespace Giantpeach\Schnapps\Twiglet;
 
+use Giantpeach\Schnapps\Twiglet\Functions\WpJsonEncode;
+use Giantpeach\Schnapps\Twiglet\Functions\EscAttr;
+
 use function Env\env;
 
 class Twiglet
@@ -31,6 +34,9 @@ class Twiglet
         'debug' => true,
       ]
     );
+
+    self::$instance->addExtension(new WpJsonEncode());
+    self::$instance->addExtension(new EscAttr());
   }
 
   public static function getInstance()
