@@ -14,7 +14,7 @@ class Image extends \Twig\Extension\AbstractExtension
   public function handleImage($data, $options = ['w' => 500, 'h' => 500, 'crop' => true],)
   {
     if (class_exists('\Giantpeach\Schnapps\Images\Images')) {
-      return $imgUrl = \Giantpeach\Schnapps\Images\Images::getInstance()->getGlideImageUrl($data, $options);
+      //return $imgUrl = \Giantpeach\Schnapps\Images\Images::getInstance()->getGlideImageUrl($data, $options);
     }
 
     return $data;
