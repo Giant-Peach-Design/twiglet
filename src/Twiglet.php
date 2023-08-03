@@ -38,7 +38,7 @@ class Twiglet
 
     self::$instance->addExtension(new WpJsonEncode());
     self::$instance->addExtension(new EscAttr());
-    //self::$instance->addExtension(new Image());
+    self::$instance->addExtension(new Image());
   }
 
   public static function getInstance()
