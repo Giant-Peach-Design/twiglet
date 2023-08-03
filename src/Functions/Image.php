@@ -17,6 +17,6 @@ class Image extends \Twig\Extension\AbstractExtension
       return $imgUrl = \Giantpeach\Schnapps\Images\Images::getInstance()->getGlideImageUrl($data, $options);
     }
 
-    return false;
+    return $data;
   }
 }
