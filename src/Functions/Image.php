@@ -11,10 +11,19 @@ class Image extends \Twig\Extension\AbstractExtension
     ];
   }
 
-  public function handleImage($data, $options = ['w' => 500, 'h' => 500, 'crop' => true],)
+  public function handleImage($data, $w = 500, $h = 500, $crop = true, $webp = false)
   {
     if (class_exists('\Giantpeach\Schnapps\Images\Images')) {
-      return $imgUrl = \Giantpeach\Schnapps\Images\Images::getInstance()->getGlideImageUrl($data, $options);
+      $opts = [
+        'w' => $w,
+        'h' => $h,
+        'crop' => $crop,
+      ];
+
+      if ($webp) {
+        $opts['fm'] = 'webp';
+      }
+      return $imgUrl = \Giantpeach\Schnapps\Images\Images::getInstance()->getGlideImageUrl($data, $opts);
     }
 
     return $data;
