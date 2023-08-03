@@ -4,6 +4,7 @@ namespace Giantpeach\Schnapps\Twiglet;
 
 use Giantpeach\Schnapps\Twiglet\Functions\WpJsonEncode;
 use Giantpeach\Schnapps\Twiglet\Functions\EscAttr;
+use Giantpeach\Schnapps\Twiglet\Functions\Image;
 
 use function Env\env;
 
@@ -37,6 +38,7 @@ class Twiglet
 
     self::$instance->addExtension(new WpJsonEncode());
     self::$instance->addExtension(new EscAttr());
+    self::$instance->addExtension(new Image());
   }
 
   public static function getInstance()
