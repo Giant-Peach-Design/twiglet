@@ -1,5 +1,6 @@
 {
   "name": "giantpeach/twiglet",
+  "license": "MIT",
   "autoload": {
     "psr-4": {
       "Giantpeach\\Schnapps\\Twiglet\\": "src/"
