@@ -29,7 +29,7 @@ class Twiglet
     }
 
     self::$instance = new \Twig\Environment(
-      new \Twig\Loader\FilesystemLoader(self::$themeDir),
+      new \Twig\Loader\FilesystemLoader([self::$themeDir, self::$themeDir . '/src/Blocks', self::$themeDir . '/src/Components', self::$themeDir . '/src/Templates']),
       [
         'cache' => false,
         'debug' => true,
