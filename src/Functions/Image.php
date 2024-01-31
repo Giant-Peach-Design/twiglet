@@ -11,6 +11,27 @@ class Image extends \Twig\Extension\AbstractExtension
     ];
   }
 
+  public function getFunctions(): array
+  {
+    return [
+      new \Twig\TwigFunction('image', [$this, 'getImage']),
+    ];
+  }
+
+  public function getImage(array|int|string $image, string $size)
+  {
+    if (class_exists('\Giantpeach\Schnapps\Images\Facades\Images')) {
+      if (is_array($image)) {
+        $image = $image['id'];
+      }
+
+      return \Giantpeach\Schnapps\Images\Facades\Images::getImageUrlForSize($image, $size);
+      //return \Giantpeach\Schnapps\Images\Facades\Images::get(image: $image, imageSize: $size);
+    }
+
+    return null;
+  }
+
   public function handleImage($data, $w = 500, $h = 500, $crop = true, $webp = false)
   {
     if (class_exists('\Giantpeach\Schnapps\Images\Images')) {
