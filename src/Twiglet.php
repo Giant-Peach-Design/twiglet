@@ -44,7 +44,7 @@ class Twiglet
     self::$instance->addExtension(new Image());
 
     Configuration::make($twig)
-      ->setTemplatesPath(self::$themeDir . '/src/Components')
+      ->setTemplatesPath('.')
       ->setTemplatesExtension('twig')
       ->useCustomTags()
       ->setup();
