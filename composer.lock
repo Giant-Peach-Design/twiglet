@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c11548e4cbc3dfe742af90f40ca6d53d",
+    "content-hash": "0982b32497746e5519fc578b26929b9c",
     "packages": [
         {
             "name": "graham-campbell/result-type",
@@ -122,6 +122,61 @@
                 "source": "https://github.com/oscarotero/env/tree/v2.1.0"
             },
             "time": "2020-06-11T10:59:27+00:00"
+        },
+        {
+            "name": "performing/twig-components",
+            "version": "0.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/giorgiopogliani/twig-components.git",
+                "reference": "d31cd318a2093c2c094e1f036481cc109ad6b66c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/giorgiopogliani/twig-components/zipball/d31cd318a2093c2c094e1f036481cc109ad6b66c",
+                "reference": "d31cd318a2093c2c094e1f036481cc109ad6b66c",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4|^8.0",
+                "twig/twig": "^2.12.5 || >=3.0 <3.9"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.0",
+                "pestphp/pest": "^1.0",
+                "phpunit/phpunit": "^9.3",
+                "symfony/var-dumper": "^5.2",
+                "vimeo/psalm": "^3.11"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Performing\\TwigComponents\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Giorgio Pogliani",
+                    "email": "giorgiopogliani94@gmail.com",
+                    "homepage": "https://performingdigital.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Twig components extension",
+            "homepage": "https://github.com/giorgiopogliani/twig-components",
+            "keywords": [
+                "digital",
+                "twig-components"
+            ],
+            "support": {
+                "issues": "https://github.com/giorgiopogliani/twig-components/issues",
+                "source": "https://github.com/giorgiopogliani/twig-components/tree/0.6.0"
+            },
+            "time": "2024-06-29T21:41:37+00:00"
         },
         {
             "name": "phpoption/phpoption",

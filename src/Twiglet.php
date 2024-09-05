@@ -5,6 +5,7 @@ namespace Giantpeach\Schnapps\Twiglet;
 use Giantpeach\Schnapps\Twiglet\Functions\WpJsonEncode;
 use Giantpeach\Schnapps\Twiglet\Functions\EscAttr;
 use Giantpeach\Schnapps\Twiglet\Functions\Image;
+use Performing\TwigComponents\Configuration;
 
 use function Env\env;
 
@@ -28,7 +29,7 @@ class Twiglet
       $options['debug'] = false;
     }
 
-    self::$instance = new \Twig\Environment(
+    $twig = new \Twig\Environment(
       new \Twig\Loader\FilesystemLoader([self::$themeDir, self::$themeDir . '/src/Blocks', self::$themeDir . '/src/Components', self::$themeDir . '/src/Templates']),
       [
         'cache' => false,
@@ -36,9 +37,17 @@ class Twiglet
       ]
     );
 
+    self::$instance = $twig;
+
     self::$instance->addExtension(new WpJsonEncode());
     self::$instance->addExtension(new EscAttr());
     self::$instance->addExtension(new Image());
+
+    Configuration::make($twig)
+      ->setTemplatesPath(self::$themeDir . '/src/')
+      ->setTemplatesExtension('twig')
+      ->useCustomTags()
+      ->setup();
   }
 
   public static function getInstance()
