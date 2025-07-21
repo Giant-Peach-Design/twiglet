@@ -33,17 +33,18 @@ class Image extends \Twig\Extension\AbstractExtension
         return null;
     }
 
-    public function imageTag(array|int|string $image, string $sizes = '100vw', array $widths = [375, 750, 1100, 1500, 2200], array $attributes = []): string
+    public function imageTag(array|int|string $image, string $sizes = '100vw', array $widths = [375, 750, 1100, 1500, 2200], array $attributes = [])
     {
         if (class_exists('\Giantpeach\Schnapps\Images\Facades\Images')) {
             if (is_array($image)) {
                 $image = $image['id'];
             }
 
-            return \Giantpeach\Schnapps\Images\Facades\Images::createImageTag($image, $sizes, $widths, $attributes);
+            $html = \Giantpeach\Schnapps\Images\Facades\Images::createImageTag($image, $sizes, $widths, $attributes);
+            return new \Twig\Markup($html, 'UTF-8');
         }
 
-        return '';
+        return new \Twig\Markup('', 'UTF-8');
     }
 
     public function handleImage($data, $w = 500, $h = 500, $crop = true, $webp = false)
