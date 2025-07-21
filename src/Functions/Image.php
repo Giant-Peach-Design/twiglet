@@ -16,6 +16,7 @@ class Image extends \Twig\Extension\AbstractExtension
         return [
             new \Twig\TwigFunction('image', [$this, 'getImage']),
             new \Twig\TwigFunction('image_tag', [$this, 'imageTag']),
+            new \Twig\TwigFunction('picture_tag', [$this, 'pictureTag']),
         ];
     }
 
@@ -41,6 +42,37 @@ class Image extends \Twig\Extension\AbstractExtension
             }
 
             $html = \Giantpeach\Schnapps\Images\Facades\Images::createImageTag($image, $sizes, $widths, $attributes);
+            return new \Twig\Markup($html, 'UTF-8');
+        }
+
+        return new \Twig\Markup('', 'UTF-8');
+    }
+
+    public function pictureTag(
+        array|int|string $mobileImage, 
+        array|int|string $desktopImage, 
+        string $breakpoint = '640px',
+        array $mobileWidths = [375, 750],
+        array $desktopWidths = [1100, 1500, 2200],
+        array $attributes = []
+    )
+    {
+        if (class_exists('\Giantpeach\Schnapps\Images\Facades\Images')) {
+            if (is_array($mobileImage)) {
+                $mobileImage = $mobileImage['id'];
+            }
+            if (is_array($desktopImage)) {
+                $desktopImage = $desktopImage['id'];
+            }
+
+            $html = \Giantpeach\Schnapps\Images\Facades\Images::createPictureTag(
+                $mobileImage, 
+                $desktopImage, 
+                $breakpoint, 
+                $mobileWidths, 
+                $desktopWidths, 
+                $attributes
+            );
             return new \Twig\Markup($html, 'UTF-8');
         }
 
