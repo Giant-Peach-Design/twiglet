@@ -64,7 +64,8 @@ class Image extends \Twig\Extension\AbstractExtension
         array $desktopWidths = [1100, 1500, 2200],
         array $attributes = [],
         array $mobileGlideParams = [],
-        array $desktopGlideParams = []
+        array $desktopGlideParams = [],
+        array $pictureAttributes = []
     )
     {
         if (class_exists('\Giantpeach\Schnapps\Images\Facades\Images')) {
@@ -83,7 +84,8 @@ class Image extends \Twig\Extension\AbstractExtension
                 $desktopWidths, 
                 $attributes,
                 $mobileGlideParams,
-                $desktopGlideParams
+                $desktopGlideParams,
+                $pictureAttributes
             );
             return new \Twig\Markup($html, 'UTF-8');
         }
