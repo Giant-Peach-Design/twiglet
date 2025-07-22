@@ -34,14 +34,22 @@ class Image extends \Twig\Extension\AbstractExtension
         return null;
     }
 
-    public function imageTag(array|int|string $image, string $sizes = '100vw', array $widths = [375, 750, 1100, 1500, 2200], array $attributes = [])
+    public function imageTag(array|int|string|null $image, string $sizes = '100vw', array $widths = [375, 750, 1100, 1500, 2200], array $attributes = [], array $glideParams = [])
     {
         if (class_exists('\Giantpeach\Schnapps\Images\Facades\Images')) {
+            if ($image === null) {
+                return new \Twig\Markup('', 'UTF-8');
+            }
+            
             if (is_array($image)) {
-                $image = $image['id'];
+                $image = $image['id'] ?? null;
+            }
+            
+            if ($image === null) {
+                return new \Twig\Markup('', 'UTF-8');
             }
 
-            $html = \Giantpeach\Schnapps\Images\Facades\Images::createImageTag($image, $sizes, $widths, $attributes);
+            $html = \Giantpeach\Schnapps\Images\Facades\Images::createImageTag($image, $sizes, $widths, $attributes, $glideParams);
             return new \Twig\Markup($html, 'UTF-8');
         }
 
@@ -49,20 +57,22 @@ class Image extends \Twig\Extension\AbstractExtension
     }
 
     public function pictureTag(
-        array|int|string $mobileImage, 
-        array|int|string $desktopImage, 
+        array|int|string|null $mobileImage, 
+        array|int|string|null $desktopImage, 
         string $breakpoint = '640px',
         array $mobileWidths = [375, 750],
         array $desktopWidths = [1100, 1500, 2200],
-        array $attributes = []
+        array $attributes = [],
+        array $mobileGlideParams = [],
+        array $desktopGlideParams = []
     )
     {
         if (class_exists('\Giantpeach\Schnapps\Images\Facades\Images')) {
             if (is_array($mobileImage)) {
-                $mobileImage = $mobileImage['id'];
+                $mobileImage = $mobileImage['id'] ?? null;
             }
             if (is_array($desktopImage)) {
-                $desktopImage = $desktopImage['id'];
+                $desktopImage = $desktopImage['id'] ?? null;
             }
 
             $html = \Giantpeach\Schnapps\Images\Facades\Images::createPictureTag(
@@ -71,7 +81,9 @@ class Image extends \Twig\Extension\AbstractExtension
                 $breakpoint, 
                 $mobileWidths, 
                 $desktopWidths, 
-                $attributes
+                $attributes,
+                $mobileGlideParams,
+                $desktopGlideParams
             );
             return new \Twig\Markup($html, 'UTF-8');
         }
@@ -91,7 +103,7 @@ class Image extends \Twig\Extension\AbstractExtension
             if ($webp) {
                 $opts['fm'] = 'webp';
             }
-            return $imgUrl = \Giantpeach\Schnapps\Images\Images::getInstance()->getGlideImageUrl($data, $opts);
+            return $imgUrl = \Giantpeach\Schnapps\Images\Images::getInstance()->getUrl($data, $opts);
         }
 
         return $data;
